@@ -1,0 +1,66 @@
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 250,
+    "GOOGL": 140,
+    "MSFT": 350,
+    "AMZN": 145,
+    "META": 300,
+    "NVDA": 500
+}
+
+portfolio = {}
+
+print("===== Nitin STOCK PORTFOLIO TRACKER =====")
+
+investor_name = input("Enter Investor Name: ")
+
+while True:
+
+    print("\n1. Add Stock")
+    print("2. View Portfolio")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+
+        stock = input("Enter Stock Symbol: ").upper()
+
+        if stock not in stock_prices:
+            print("Stock not available!")
+            continue
+
+        quantity = int(input("Enter Quantity: "))
+
+        if stock in portfolio:
+            portfolio[stock] += quantity
+        else:
+            portfolio[stock] = quantity
+
+        print("Stock Added Successfully!")
+
+    elif choice == "2":
+
+        total_value = 0
+
+        print(f"\nPortfolio Report for {investor_name}")
+
+        for stock, quantity in portfolio.items():
+
+            value = stock_prices[stock] * quantity
+            total_value += value
+
+            print("------------------------")
+            print("Stock:", stock)
+            print("Price:", stock_prices[stock])
+            print("Quantity:", quantity)
+            print("Investment Value:", value)
+
+        print("\nTotal Portfolio Value =", total_value)
+
+    elif choice == "3":
+        print("Thank You For Using Portfolio Tracker!")
+        break
+
+    else:
+        print("Invalid Choice!")
